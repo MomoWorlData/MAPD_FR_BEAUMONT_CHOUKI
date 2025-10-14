@@ -1,5 +1,8 @@
 package io.github.leobeaumont;
 
-public class Edge {
+public abstract class Edge {
 
+    public abstract boolean isActivable();
+    public abstract void activate();
+    
 }
