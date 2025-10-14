@@ -1,6 +1,9 @@
 package io.github.leobeaumont;
 
 public class Place {
+    /*
+    This implement the Place class, that are mainly used to store tokens.
+    */
 
     private int nbTokens;
 
@@ -34,8 +37,8 @@ public class Place {
             amount (int): Amount of tokens to remove
 
         Throws:
-            InvalidAttributeValueException: If amount if negative.
-            InvalidAttributeValueException: If amount is greater than the amount of tokens in the place.
+            IllegalArgumentException: If amount if negative.
+            IllegalArgumentException: If amount is greater than the amount of tokens in the place.
         */
         if (amount < 0){
             throw new IllegalArgumentException(String.format("Place.removeTokens(%d) -- The argument amount (%d) is negative", amount, amount));
@@ -57,7 +60,7 @@ public class Place {
             amount (int): Amount of tokens to remove
 
         Throws:
-            InvalidAttributeValueException: If amount if negative.        
+            IllegalArgumentException: If amount if negative.        
         */
         if (amount < 0){
             throw new IllegalArgumentException(String.format("Place.removeTokens(%d) -- The argument amount (%d) is negative", amount, amount));
