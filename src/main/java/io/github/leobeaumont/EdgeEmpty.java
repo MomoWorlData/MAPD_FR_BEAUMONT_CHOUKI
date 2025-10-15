@@ -1,44 +1,56 @@
 package io.github.leobeaumont;
 
+/**
+ * Represents an incoming edge that empties its origin {@link Place} upon activation.
+ * <p>
+ * {@code EdgeEmpty} extends {@link EdgeIn} and defines behavior where activation
+ * removes all tokens from the origin place.
+ * </p>
+ * <p>
+ * The edge can only be activated if its origin {@link Place} contains at least one token.
+ * </p>
+ */
 public class EdgeEmpty extends EdgeIn {
-    /*
-    This implement the class EdgeEmpty, which is an EdgeIn that empty it's origin on activation.
-    EdgeEmpty can activate if there is at leist one token in its Place of origin.
-    */
 
+    /**
+     * Creates a new {@code EdgeEmpty} connecting a {@link Place} to a {@link Transition}.
+     *
+     * @param origin  the origin {@link Place} of the edge
+     * @param arrival the arrival {@link Transition} of the edge
+     */
     public EdgeEmpty(Place origin, Transition arrival) {
-        /*
-        Constructor for the EdgeEmpty class.
-
-        Args:
-            origin (Place): Origin of the edge.
-            arrival (Transition): Arrival of the edge.
-        */
         super(origin, arrival);
     }
 
+    /**
+     * Creates an uninitialized {@code EdgeEmpty} instance.
+     */
     public EdgeEmpty() {
-        /*
-        Constructor for the EdgeEmpty class.
-        */
         super();
     }
 
+    /**
+     * Determines whether this edge can be activated.
+     * <p>
+     * An {@code EdgeEmpty} is activable if its origin {@link Place} contains
+     * at least one token.
+     * </p>
+     *
+     * @return {@code true} if the edge can be activated; {@code false} otherwise
+     */
     public boolean isActivable() {
-        /*
-        Tells if the Edge can be activated. EdgeEmpty can be activated if its place of origin has at leist one token.
-
-        Returns:
-            (boolean): If the Edge can be activated.
-        */
         Place originPlace = this.getOrigin();
         return (originPlace.getNbTokens() > 0);
     }
 
+    /**
+     * Activates this edge.
+     * <p>
+     * When activated, this implementation removes all tokens from
+     * the origin {@link Place}.
+     * </p>
+     */
     public void activate() {
-        /*
-        Activate the Edge. For EdgeEmpty, this empty the Place of origin.
-        */
         Place originPlace = this.getOrigin();
         originPlace.setNbTokens(0);
     }

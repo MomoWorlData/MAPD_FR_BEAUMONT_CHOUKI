@@ -4,28 +4,33 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Represents a transition in a Petri net, responsible for moving tokens
+ * from input places to output places via edges.
+ */
 public class Transition {
-    /*
-    This implement the class Transition, that moves tokens from place to place using edges.
-    */
 
     private List<EdgeIn> edgesIn;
     private List<EdgeOut> edgesOut;
 
+    /**
+     * Creates a new {@code Transition} with empty input and output edge lists.
+     */
     public Transition() {
         // ArrayList is the best choice for iteration speed and memory usage
         edgesIn = new ArrayList<EdgeIn>();
         edgesOut = new ArrayList<EdgeOut>();
     }
 
+    /**
+     * Determines whether this transition can be drawn (activated).
+     * <p>
+     * A transition can be drawn if all its incoming edges are activable.
+     * </p>
+     *
+     * @return {@code true} if the transition can be drawn; {@code false} otherwise
+     */
     public boolean isDrawable() {
-        /*
-        Tells if the transition can be drawn.
-
-        Returns:
-            (boolean): If the transition can be drawn.
-        */
-
         // Create an iterator for incoming edges
         List<EdgeIn> edgesToTest = this.getEdgesIn();
         Iterator<EdgeIn> edgeIterator = edgesToTest.iterator();
@@ -40,16 +45,18 @@ public class Transition {
         return true;
     }
 
+    /**
+     * Draws (activates) the transition.
+     * <p>
+     * This method calls {@link Edge#activate()} on all connected incoming and outgoing edges.
+     * </p>
+     */
     public void draw() {
-        /*
-        Draw the transition. This calls the activate method of all connected edges.
-        */
-
         // Create iterators for all edges
         List<EdgeIn> edgesIn = this.getEdgesIn();
         Iterator<EdgeIn> edgesInIterator = edgesIn.iterator();
 
-        List<EdgeOut> edgesOut = this .getEdgesOut();
+        List<EdgeOut> edgesOut = this.getEdgesOut();
         Iterator<EdgeOut> edgesOutIterator = edgesOut.iterator();
 
         // Activate all edges
@@ -64,62 +71,78 @@ public class Transition {
         }
     }
 
+    /**
+     * Adds an incoming edge to this transition.
+     *
+     * @param edge the {@link EdgeIn} to add
+     */
     public void newEdgeIn(EdgeIn edge) {
-        /*
-        Add an EdgeIn in the list edgesIn.
-        
-        Args:
-            edge (EdgeIn): Edge to add to the list.
-        */
         List<EdgeIn> edgesIn = this.getEdgesIn();
         edgesIn.add(edge);
     }
 
+    /**
+     * Removes an incoming edge from this transition.
+     *
+     * @param edge the {@link EdgeIn} to remove
+     */
     public void removeEdgeIn(EdgeIn edge) {
-        /*
-        Remove an EdgeIn from the list edgesIn.
-
-        Args:
-            edge (EdgeIn): Edge to remove from the list.
-        */
         List<EdgeIn> edgesIn = this.getEdgesIn();
         edgesIn.remove(edge);
     }
 
+    /**
+     * Adds an outgoing edge to this transition.
+     *
+     * @param edge the {@link EdgeOut} to add
+     */
     public void newEdgeOut(EdgeOut edge) {
-        /*
-        Add an EdgeOut in the list edgesOut.
-        
-        Args:
-            edge (EdgeOut): Edge to add to the list.
-        */
         List<EdgeOut> edgesOut = this.getEdgesOut();
         edgesOut.add(edge);
     }
 
+    /**
+     * Removes an outgoing edge from this transition.
+     *
+     * @param edge the {@link EdgeOut} to remove
+     */
     public void removeEdgeOut(EdgeOut edge) {
-        /*
-        Remove an EdgeOut from the list edgesOut.
-
-        Args:
-            edge (EdgeOut): Edge to remove from the list.
-        */
         List<EdgeOut> edgesOut = this.getEdgesOut();
         edgesOut.remove(edge);
     }
 
+    /**
+     * Returns the list of incoming edges.
+     *
+     * @return the list of {@link EdgeIn}
+     */
     public List<EdgeIn> getEdgesIn() {
         return edgesIn;
     }
 
+    /**
+     * Sets the list of incoming edges.
+     *
+     * @param edgesIn the list of {@link EdgeIn} to set
+     */
     public void setEdgesIn(List<EdgeIn> edgesIn) {
         this.edgesIn = edgesIn;
     }
 
+    /**
+     * Returns the list of outgoing edges.
+     *
+     * @return the list of {@link EdgeOut}
+     */
     public List<EdgeOut> getEdgesOut() {
         return edgesOut;
     }
 
+    /**
+     * Sets the list of outgoing edges.
+     *
+     * @param edgesOut the list of {@link EdgeOut} to set
+     */
     public void setEdgesOut(List<EdgeOut> edgesOut) {
         this.edgesOut = edgesOut;
     }

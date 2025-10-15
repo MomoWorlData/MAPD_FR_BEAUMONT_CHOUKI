@@ -4,18 +4,21 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for the {@link Transition} class.
+ */
 public class TransitionTest {
-    /*
-    Tests for the Transition class 
-    */
 
     private Transition transition;
 
+    /**
+     * Tests the constructor of {@link Transition}.
+     * <p>
+     * Verifies that the edgesIn and edgesOut lists are initialized and empty.
+     * </p>
+     */
     @Test
     void ConstructorTest() {
-        /*
-        This tests the constructor methods.
-        */
         transition = new Transition();
 
         assertNotNull(transition.getEdgesIn());
@@ -25,11 +28,16 @@ public class TransitionTest {
         assertEquals(transition.getEdgesOut().size(), 0);
     }
 
+    /**
+     * Tests the {@link Transition#newEdgeIn(EdgeIn)} and
+     * {@link Transition#removeEdgeIn(EdgeIn)} methods.
+     * <p>
+     * Verifies that edges can be added and removed correctly, and that
+     * removing an edge not present does not affect the list.
+     * </p>
+     */
     @Test
     void EdgeInModifiersTest() {
-        /*
-        This tests the method newEdgeIn and removeEdgeIn.
-        */
         transition = new Transition();
         EdgeIn edge1 = new WeightedEdgeIn(0);
         EdgeIn edge2 = new WeightedEdgeIn(0);
@@ -46,11 +54,16 @@ public class TransitionTest {
         assertEquals(transition.getEdgesIn().size(), 0);
     }
 
+    /**
+     * Tests the {@link Transition#newEdgeOut(EdgeOut)} and
+     * {@link Transition#removeEdgeOut(EdgeOut)} methods.
+     * <p>
+     * Verifies that outgoing edges can be added and removed correctly,
+     * and that removing an edge not present does not affect the list.
+     * </p>
+     */
     @Test
     void EdgeOutModifiersTest() {
-        /*
-        This tests the method newEdgeOut and removeEdgeOut.
-        */
         transition = new Transition();
         EdgeOut edge1 = new WeightedEdgeOut(0);
         EdgeOut edge2 = new WeightedEdgeOut(0);
@@ -67,11 +80,15 @@ public class TransitionTest {
         assertEquals(transition.getEdgesOut().size(), 0);        
     }
 
+    /**
+     * Tests the {@link Transition#isDrawable()} method.
+     * <p>
+     * Verifies the conditions under which a transition is considered drawable
+     * for different types of incoming edges, including multiple edges.
+     * </p>
+     */
     @Test
     void isDrawableTest() {
-        /*
-        This tests the method isDrawable.
-        */
         EdgeIn edge1 = new WeightedEdgeIn(1);
         EdgeIn edge2 = new EdgeZero();
         EdgeIn edge3 = new EdgeEmpty();
@@ -115,13 +132,16 @@ public class TransitionTest {
         assertFalse(transition.isDrawable());
     }
 
+    /**
+     * Tests the {@link Transition#draw()} method.
+     * <p>
+     * Verifies that all connected incoming and outgoing edges are activated correctly,
+     * and that token counts are updated as expected.
+     * </p>
+     */
     @Test
     void drawTest() {
-        /*
-        This tests the method draw.
-        */
-
-        // Tests with all Edges (except EdgeEmpty because its activation does nothing)
+        // Tests with all edges (except EdgeEmpty because its activation does nothing)
         transition = new Transition();
         EdgeIn edge1 = new WeightedEdgeIn(1);
         EdgeOut edge2 = new WeightedEdgeOut(1);

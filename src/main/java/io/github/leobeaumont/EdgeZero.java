@@ -1,43 +1,51 @@
 package io.github.leobeaumont;
 
+/**
+ * Represents an incoming edge that activates only when its origin {@link Place} is empty.
+ * <p>
+ * {@code EdgeZero} extends {@link EdgeIn} and defines behavior where activation is possible
+ * only if the origin place has no tokens. When activated, this edge performs no action.
+ * </p>
+ */
 public class EdgeZero extends EdgeIn {
-    /*
-    This implement the class EdgeEmpty, which is an EdgeIn that empty it's origin on activation.
-    EdgeEmpty can activate if there is at leist one token in its Place of origin.
-    */
 
+    /**
+     * Creates a new {@code EdgeZero} connecting a {@link Place} to a {@link Transition}.
+     *
+     * @param origin  the origin {@link Place} of the edge
+     * @param arrival the arrival {@link Transition} of the edge
+     */
     public EdgeZero(Place origin, Transition arrival) {
-        /*
-        Constructor for the EdgeZero class.
-
-        Args:
-            origin (Place): Origin of the edge.
-            arrival (Transition): Arrival of the edge.
-        */
         super(origin, arrival);
     }
 
+    /**
+     * Creates an uninitialized {@code EdgeZero} instance.
+     */
     public EdgeZero() {
-        /*
-        Constructor for the EdgeZero class.
-        */
         super();
     }
 
+    /**
+     * Determines whether this edge can be activated.
+     * <p>
+     * An {@code EdgeZero} is activable if its origin {@link Place} contains no tokens.
+     * </p>
+     *
+     * @return {@code true} if the edge can be activated; {@code false} otherwise
+     */
     public boolean isActivable() {
-        /*
-        Tells if the Edge can be activated. EdgeZero can be activated if its place of origin has no token.
-
-        Returns:
-            (boolean): If the Edge can be activated.
-        */
         Place originPlace = this.getOrigin();
         return (originPlace.getNbTokens() == 0);
     }
 
+    /**
+     * Activates this edge.
+     * <p>
+     * For {@code EdgeZero}, this method performs no operation.
+     * </p>
+     */
     public void activate() {
-        /*
-        Activate the Edge. For EdgeZero, this does nothing.
-        */
+        // No action required
     }
 }
