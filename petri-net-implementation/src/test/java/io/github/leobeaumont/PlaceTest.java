@@ -13,17 +13,17 @@ public class PlaceTest {
 
     @Test
     void ConstructorTest() {
-    /*
-    This tests the constructor methods.
-    */
-    place = new Place();
-    assertEquals(place.getNbTokens(), 0);
+        /*
+        This tests the constructor methods.
+        */
+        place = new Place();
+        assertEquals(place.getNbTokens(), 0);
 
-    place = new Place(-1);
-    assertEquals(place.getNbTokens(), 0);
+        place = new Place(-1);
+        assertEquals(place.getNbTokens(), 0);
 
-    place = new Place(1);
-    assertEquals(place.getNbTokens(), 1);
+        place = new Place(1);
+        assertEquals(place.getNbTokens(), 1);
     }
 
     @Test
