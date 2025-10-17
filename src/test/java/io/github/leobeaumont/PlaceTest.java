@@ -23,7 +23,7 @@ public class PlaceTest {
      * </p>
      */
     @Test
-    void ConstructorTest() {
+    void constructorTest() {
         place = new Place();
         assertEquals(place.getNbTokens(), 0);
 
@@ -46,7 +46,7 @@ public class PlaceTest {
      * </p>
      */
     @Test
-    void RemoveTokensTest() {
+    void removeTokensTest() {
         place = new Place(1);
 
         // Check for exception cases

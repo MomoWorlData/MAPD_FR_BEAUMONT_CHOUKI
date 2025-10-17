@@ -18,7 +18,7 @@ public class TransitionTest {
      * </p>
      */
     @Test
-    void ConstructorTest() {
+    void constructorTest() {
         transition = new Transition();
 
         assertNotNull(transition.getEdgesIn());
