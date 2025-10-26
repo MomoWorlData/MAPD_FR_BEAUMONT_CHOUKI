@@ -73,4 +73,25 @@ public class PetriNet implements IPretriNet {
         this.edges.add(edge);
     }
 
+    public void addTransition() {
+        Transition transition = new Transition();
+        this.transitions.add(transition);
+    }
+
+    public void removePlace(Place place) {
+        this.places.remove(place);
+    }
+
+    public void removeEdge(Edge edge) {
+        this.edges.remove(edge);
+    }
+
+    public void removeTransition(Transition transition) {
+        this.transitions.remove(transition);
+    }
+
+    public void setTokens(Place place, int nbTokens) {
+        place.setNbTokens(nbTokens);
+    }
+
 }
