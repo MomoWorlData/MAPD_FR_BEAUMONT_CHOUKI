@@ -80,16 +80,17 @@ public interface IPretriNet {
     /**
      * Sets the weight of a specific {@link Edge}.
      *
-     * @param edge the edge whose weight will be updated.
+     * @param edge   the edge whose weight will be updated.
+     * @param weight the new weight to assign.
      */
-    public void setWeight(Edge edge);
+    public void setWeight(Edge edge, int weight);
 
     /**
      * Returns the list of {@link Transition}s that can currently fire.
      *
      * @return a list of firable transitions.
      */
-    public List<Transition> firable();
+    public List<Transition> drawable();
 
     /**
      * Launches the Petri net simulation for a given number of steps.
