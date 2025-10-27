@@ -327,4 +327,58 @@ public class PetriNet implements IPretriNet {
             this.stepSimulation(randomTransition);
         }
     }
+
+    /**
+     * Returns the list of edges in the Petri net.
+     *
+     * @return a list of {@link Edge} objects representing all edges in the net
+     */
+    public List<Edge> getEdges() {
+        return edges;
+    }
+
+    /**
+     * Sets the list of edges in the Petri net.
+     *
+     * @param edges the new list of {@link Edge} objects to assign
+     */
+    public void setEdges(List<Edge> edges) {
+        this.edges = edges;
+    }
+
+    /**
+     * Returns the list of places in the Petri net.
+     *
+     * @return a list of {@link Place} objects representing all places in the net
+     */
+    public List<Place> getPlaces() {
+        return places;
+    }
+
+    /**
+     * Sets the list of places in the Petri net.
+     *
+     * @param places the new list of {@link Place} objects to assign
+     */
+    public void setPlaces(List<Place> places) {
+        this.places = places;
+    }
+
+    /**
+     * Returns the list of transitions in the Petri net.
+     *
+     * @return a list of {@link Transition} objects representing all transitions in the net
+     */
+    public List<Transition> getTransitions() {
+        return transitions;
+    }
+
+    /**
+     * Sets the list of transitions in the Petri net.
+     *
+     * @param transitions the new list of {@link Transition} objects to assign
+     */
+    public void setTransitions(List<Transition> transitions) {
+        this.transitions = transitions;
+    }
 }
