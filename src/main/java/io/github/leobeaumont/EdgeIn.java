@@ -22,9 +22,6 @@ public abstract class EdgeIn extends Edge {
     public EdgeIn(Place origin, Transition arrival) {
         this.setOrigin(origin);
         this.setArrival(arrival);
-
-        // Inform the arrival transition it has a new EdgeIn
-        arrival.newEdgeIn(this);
     }
 
     /**

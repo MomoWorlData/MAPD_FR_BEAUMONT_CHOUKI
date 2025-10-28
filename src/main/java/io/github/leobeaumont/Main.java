@@ -26,8 +26,6 @@ package io.github.leobeaumont;
  */
 public final class Main {
 
-    private static final int SIMULATION_STEPS = 3;
-
     private Main() {
 
     }
@@ -44,6 +42,8 @@ public final class Main {
      * @param args command-line arguments (not used in this example)
      */
     public static void main(String[] args) {
+        final int simulationSteps = 3;
+
         // Create a new PetriNet
         PetriNet net = new PetriNet();
 
@@ -67,7 +67,7 @@ public final class Main {
         System.out.println("Place p2: " + p2.getNbTokens());
 
         // Simulate 3 steps
-        for (int i = 1; i <= SIMULATION_STEPS; ++i) {
+        for (int i = 1; i <= simulationSteps; ++i) {
             if (t1.isDrawable()) {
                 net.stepSimulation(t1);
                 System.out.println("\nAfter step " + i + ":");

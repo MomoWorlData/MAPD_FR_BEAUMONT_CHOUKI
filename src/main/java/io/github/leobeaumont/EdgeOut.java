@@ -22,9 +22,6 @@ public abstract class EdgeOut extends Edge {
     public EdgeOut(Transition origin, Place arrival) {
         this.setOrigin(origin);
         this.setArrival(arrival);
-
-        // Inform the origin transition it has a new EdgeOut
-        origin.newEdgeOut(this);
     }
 
     /**
