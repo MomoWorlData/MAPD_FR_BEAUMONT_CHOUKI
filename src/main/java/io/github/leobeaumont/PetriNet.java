@@ -9,7 +9,7 @@ import java.util.Random;
  * Represents a Petri net system composed of places, transitions, and edges.
  * A Petri net models a distributed system where tokens move between places
  * through transitions according to defined rules.
- * 
+ *
  * <p>This class implements {@link IPretriNet} and provides functionality to:
  * <ul>
  *   <li>Add or remove places, transitions, and edges</li>
@@ -17,10 +17,10 @@ import java.util.Random;
  *   <li>Validate the structure of the Petri net</li>
  *   <li>Execute and simulate transitions</li>
  * </ul>
- * 
+ *
  * <p>Supported edge types include {@link WeightedEdgeIn}, {@link WeightedEdgeOut},
  * {@link EdgeEmpty}, and {@link EdgeZero}.</p>
- * 
+ *
  * @author
  *     leobeaumont
  */
@@ -202,7 +202,7 @@ public class PetriNet implements IPretriNet {
      *
      * @param edge   the edge to modify
      * @param weight the new weight
-     * @throws IllegalArgumentException if the edge is not an instance of {@link WeightedEdgeIn} or {@link WeightedEdgeOut}
+     * @throws IllegalArgumentException if the edge is not a {@link WeightedEdgeIn} or {@link WeightedEdgeOut}
      */
     public void setWeight(Edge edge, int weight) throws IllegalArgumentException {
         if (edge instanceof WeightedEdgeIn) {
@@ -213,7 +213,8 @@ public class PetriNet implements IPretriNet {
             this.setWeight(weightedEdge, weight);
         } else {
             throw new IllegalArgumentException(String.format(
-                "PetriNet.setWeight(edge, %d) -- The argument edge (%s) is not a weighted edge.", weight, edge.getClass().getSimpleName()));
+                "PetriNet.setWeight(edge, %d) -- The argument edge (%s) is not a weighted edge.",
+                weight, edge.getClass().getSimpleName()));
         }
     }
 

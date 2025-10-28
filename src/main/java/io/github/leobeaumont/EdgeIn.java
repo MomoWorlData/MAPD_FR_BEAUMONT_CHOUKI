@@ -10,17 +10,6 @@ package io.github.leobeaumont;
  */
 public abstract class EdgeIn extends Edge {
 
-    /**
-     * Determines whether this edge can be activated.
-     * <p>
-     * Concrete subclasses must define the conditions under which the edge
-     * can trigger its connected {@link Transition}.
-     * </p>
-     *
-     * @return {@code true} if the edge can be activated; {@code false} otherwise
-     */
-    public abstract boolean isActivable();
-
     private Place origin;
     private Transition arrival;
 
@@ -43,6 +32,17 @@ public abstract class EdgeIn extends Edge {
      */
     public EdgeIn() {
     }
+
+    /**
+     * Determines whether this edge can be activated.
+     * <p>
+     * Concrete subclasses must define the conditions under which the edge
+     * can trigger its connected {@link Transition}.
+     * </p>
+     *
+     * @return {@code true} if the edge can be activated; {@code false} otherwise
+     */
+    public abstract boolean isActivable();
 
     /**
      * Returns the origin {@link Place} of this edge.

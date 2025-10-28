@@ -2,13 +2,18 @@ package io.github.leobeaumont;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Unit tests for the {@link WeightedEdgeIn} class.
  */
 public class WeightedEdgeInTest {
 
+    private static final int PLACE_TOKENS = 3;
     private WeightedEdgeIn edge;
 
     /**
@@ -17,7 +22,7 @@ public class WeightedEdgeInTest {
      * Verifies that:
      * <ul>
      *     <li>The constructor with only a weight initializes {@code origin} and {@code arrival} to {@code null}.</li>
-     *     <li>The constructor with {@link Place}, {@link Transition}, and weight correctly assigns the given arguments.</li>
+     *     <li>The constructor with {@link Place}, {@link Transition}, and weight assigns the given arguments.</li>
      * </ul>
      * </p>
      */
@@ -63,7 +68,7 @@ public class WeightedEdgeInTest {
      */
     @Test
     void activateTest() {
-        Place place = new Place(3);
+        Place place = new Place(PLACE_TOKENS);
         edge = new WeightedEdgeIn(2);
         edge.setOrigin(place);
 

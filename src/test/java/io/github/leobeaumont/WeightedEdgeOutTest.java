@@ -2,7 +2,9 @@ package io.github.leobeaumont;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  * Unit tests for the {@link WeightedEdgeOut} class.
@@ -17,7 +19,7 @@ public class WeightedEdgeOutTest {
      * Verifies that:
      * <ul>
      *     <li>The constructor with only a weight initializes {@code origin} and {@code arrival} to {@code null}.</li>
-     *     <li>The constructor with {@link Transition}, {@link Place}, and weight correctly assigns the given arguments.</li>
+     *     <li>The constructor with {@link Transition}, {@link Place}, and weight assigns the given arguments.</li>
      * </ul>
      * </p>
      */

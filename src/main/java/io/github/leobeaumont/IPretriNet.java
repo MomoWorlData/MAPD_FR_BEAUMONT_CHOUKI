@@ -16,14 +16,14 @@ public interface IPretriNet {
      *
      * @param transition the transition to activate during the simulation step.
      */
-    public void stepSimulation(Transition transition);
+    void stepSimulation(Transition transition);
 
     /**
      * Adds a new {@link Place} to the Petri net with a specified number of tokens.
      *
      * @param nbTokens the initial number of tokens to assign to the place.
      */
-    public void addPlace(int nbTokens);
+    void addPlace(int nbTokens);
 
     /**
      * Adds a new incoming {@link Edge} from a {@link Place} to a {@link Transition}.
@@ -32,7 +32,7 @@ public interface IPretriNet {
      * @param origin  the origin place.
      * @param arrival the arrival transition.
      */
-    public void addEdge(int weight, Place origin, Transition arrival);
+    void addEdge(int weight, Place origin, Transition arrival);
 
     /**
      * Adds a new outgoing {@link Edge} from a {@link Transition} to a {@link Place}.
@@ -41,33 +41,33 @@ public interface IPretriNet {
      * @param origin  the origin transition.
      * @param arrival the arrival place.
      */
-    public void addEdge(int weight, Transition origin, Place arrival);
+    void addEdge(int weight, Transition origin, Place arrival);
 
     /**
      * Adds a new {@link Transition} to the Petri net.
      */
-    public void addTransition();
+    void addTransition();
 
     /**
      * Removes a {@link Place} from the Petri net.
      *
      * @param place the place to remove.
      */
-    public void removePlace(Place place);
+    void removePlace(Place place);
 
     /**
      * Removes an {@link Edge} from the Petri net.
      *
      * @param edge the edge to remove.
      */
-    public void removeEdge(Edge edge);
+    void removeEdge(Edge edge);
 
     /**
      * Removes a {@link Transition} from the Petri net.
      *
      * @param transition the transition to remove.
      */
-    public void removeTransition(Transition transition);
+    void removeTransition(Transition transition);
 
     /**
      * Sets the number of tokens in a specific {@link Place}.
@@ -75,7 +75,7 @@ public interface IPretriNet {
      * @param place    the place whose tokens will be updated.
      * @param nbTokens the new number of tokens to assign.
      */
-    public void setTokens(Place place, int nbTokens);
+    void setTokens(Place place, int nbTokens);
 
     /**
      * Sets the weight of a specific {@link Edge}.
@@ -83,19 +83,19 @@ public interface IPretriNet {
      * @param edge   the edge whose weight will be updated.
      * @param weight the new weight to assign.
      */
-    public void setWeight(Edge edge, int weight);
+    void setWeight(Edge edge, int weight);
 
     /**
      * Returns the list of {@link Transition}s that can currently fire.
      *
      * @return a list of firable transitions.
      */
-    public List<Transition> drawable();
+    List<Transition> drawable();
 
     /**
      * Launches the Petri net simulation for a given number of steps.
      *
      * @param steps the number of simulation steps to execute.
      */
-    public void launchSimulation(int steps);
+    void launchSimulation(int steps);
 }

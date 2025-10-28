@@ -2,7 +2,10 @@ package io.github.leobeaumont;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Unit tests for the {@link EdgeZero} class.
@@ -10,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EdgeZeroTest {
 
     private EdgeZero edge;
-    
+
     /**
      * Tests the constructors of {@link EdgeZero}.
      * <p>

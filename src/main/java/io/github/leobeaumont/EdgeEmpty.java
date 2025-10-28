@@ -40,7 +40,7 @@ public class EdgeEmpty extends EdgeIn {
      */
     public boolean isActivable() {
         Place originPlace = this.getOrigin();
-        return (originPlace.getNbTokens() > 0);
+        return originPlace.getNbTokens() > 0;
     }
 
     /**

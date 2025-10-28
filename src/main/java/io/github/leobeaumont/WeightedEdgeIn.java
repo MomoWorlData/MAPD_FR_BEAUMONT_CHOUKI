@@ -57,7 +57,7 @@ public class WeightedEdgeIn extends EdgeIn {
     public boolean isActivable() {
         Place originPlace = this.getOrigin();
         int tokenInPlace = originPlace.getNbTokens();
-        return (tokenInPlace >= this.getWeight());
+        return tokenInPlace >= this.getWeight();
     }
 
     /**

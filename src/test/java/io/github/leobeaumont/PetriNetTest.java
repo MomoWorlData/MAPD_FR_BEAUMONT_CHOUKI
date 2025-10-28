@@ -1,10 +1,13 @@
 package io.github.leobeaumont;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Unit tests for the {@link PetriNet} class.
@@ -27,11 +30,11 @@ public class PetriNetTest {
     @Test
     void testAddAndGetPlaces() {
         petriNet = new PetriNet();
-        petriNet.addPlace(3);
+        petriNet.addPlace(1);
         List<Place> places = petriNet.getPlaces();
 
         assertEquals(1, places.size());
-        assertEquals(3, places.get(0).getNbTokens());
+        assertEquals(1, places.get(0).getNbTokens());
     }
 
     /**
@@ -58,7 +61,7 @@ public class PetriNetTest {
         Place place = new Place(2);
         Transition transition = new Transition();
 
-        petriNet.addEdge(3, place, transition); // WeightedEdgeIn
+        petriNet.addEdge(1, place, transition); // WeightedEdgeIn
         petriNet.addEdge(2, transition, place); // WeightedEdgeOut
 
         List<Edge> edges = petriNet.getEdges();
@@ -98,10 +101,10 @@ public class PetriNetTest {
     @Test
     void testSetTokens() {
         petriNet = new PetriNet();
-        Place place = new Place(5);
-        petriNet.setTokens(place, 10);
+        Place place = new Place();
+        petriNet.setTokens(place, 1);
 
-        assertEquals(10, place.getNbTokens());
+        assertEquals(1, place.getNbTokens());
     }
 
     /**
@@ -111,14 +114,14 @@ public class PetriNetTest {
     @Test
     void testSetWeightOnWeightedEdges() {
         petriNet = new PetriNet();
-        WeightedEdgeIn edgeIn = new WeightedEdgeIn(2);
-        WeightedEdgeOut edgeOut = new WeightedEdgeOut(3);
+        WeightedEdgeIn edgeIn = new WeightedEdgeIn(0);
+        WeightedEdgeOut edgeOut = new WeightedEdgeOut(0);
 
-        petriNet.setWeight(edgeIn, 5);
-        petriNet.setWeight(edgeOut, 7);
+        petriNet.setWeight(edgeIn, 1);
+        petriNet.setWeight(edgeOut, 2);
 
-        assertEquals(5, edgeIn.getWeight());
-        assertEquals(7, edgeOut.getWeight());
+        assertEquals(1, edgeIn.getWeight());
+        assertEquals(2, edgeOut.getWeight());
     }
 
     /**
@@ -130,7 +133,7 @@ public class PetriNetTest {
         EdgeEmpty invalidEdge = new EdgeEmpty();
 
         Exception ex = assertThrows(IllegalArgumentException.class, () ->
-            petriNet.setWeight(invalidEdge, 4)
+            petriNet.setWeight(invalidEdge, 1)
         );
         assertTrue(ex.getMessage().contains("not a weighted edge"));
     }
@@ -157,7 +160,7 @@ public class PetriNetTest {
     void testGettersAndSetters() {
         petriNet = new PetriNet();
         List<Edge> edges = List.of(new WeightedEdgeIn(2));
-        List<Place> places = List.of(new Place(3));
+        List<Place> places = List.of(new Place(1));
         List<Transition> transitions = List.of(new Transition());
 
         petriNet.setEdges(edges);
@@ -176,7 +179,7 @@ public class PetriNetTest {
     @Test
     void testLaunchSimulationDoesNotCrash() {
         petriNet = new PetriNet();
-        Place place = new Place(3);
+        Place place = new Place(2);
         Transition transition = new Transition();
         WeightedEdgeIn edgeIn = new WeightedEdgeIn(place, transition, 1);
         WeightedEdgeOut edgeOut = new WeightedEdgeOut(transition, place, 1);

@@ -53,11 +53,8 @@ public class Transition {
      */
     public void draw() {
         // Create iterators for all edges
-        List<EdgeIn> edgesIn = this.getEdgesIn();
-        Iterator<EdgeIn> edgesInIterator = edgesIn.iterator();
-
-        List<EdgeOut> edgesOut = this.getEdgesOut();
-        Iterator<EdgeOut> edgesOutIterator = edgesOut.iterator();
+        Iterator<EdgeIn> edgesInIterator = this.getEdgesIn().iterator();
+        Iterator<EdgeOut> edgesOutIterator = this.getEdgesOut().iterator();
 
         // Activate all edges
         while (edgesInIterator.hasNext()) {
@@ -77,8 +74,7 @@ public class Transition {
      * @param edge the {@link EdgeIn} to add
      */
     public void newEdgeIn(EdgeIn edge) {
-        List<EdgeIn> edgesIn = this.getEdgesIn();
-        edgesIn.add(edge);
+        this.getEdgesIn().add(edge);
     }
 
     /**
@@ -87,8 +83,7 @@ public class Transition {
      * @param edge the {@link EdgeIn} to remove
      */
     public void removeEdgeIn(EdgeIn edge) {
-        List<EdgeIn> edgesIn = this.getEdgesIn();
-        edgesIn.remove(edge);
+        this.getEdgesIn().remove(edge);
     }
 
     /**
@@ -97,8 +92,7 @@ public class Transition {
      * @param edge the {@link EdgeOut} to add
      */
     public void newEdgeOut(EdgeOut edge) {
-        List<EdgeOut> edgesOut = this.getEdgesOut();
-        edgesOut.add(edge);
+        this.getEdgesOut().add(edge);
     }
 
     /**
@@ -107,8 +101,7 @@ public class Transition {
      * @param edge the {@link EdgeOut} to remove
      */
     public void removeEdgeOut(EdgeOut edge) {
-        List<EdgeOut> edgesOut = this.getEdgesOut();
-        edgesOut.remove(edge);
+        this.getEdgesOut().remove(edge);
     }
 
     /**

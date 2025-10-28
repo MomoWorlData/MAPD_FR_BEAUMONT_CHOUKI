@@ -2,7 +2,10 @@ package io.github.leobeaumont;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Unit tests for the {@link Transition} class.
@@ -37,7 +40,7 @@ public class TransitionTest {
      * </p>
      */
     @Test
-    void EdgeInModifiersTest() {
+    void edgeInModifiersTest() {
         transition = new Transition();
         EdgeIn edge1 = new WeightedEdgeIn(0);
         EdgeIn edge2 = new WeightedEdgeIn(0);
@@ -63,7 +66,7 @@ public class TransitionTest {
      * </p>
      */
     @Test
-    void EdgeOutModifiersTest() {
+    void edgeOutModifiersTest() {
         transition = new Transition();
         EdgeOut edge1 = new WeightedEdgeOut(0);
         EdgeOut edge2 = new WeightedEdgeOut(0);
@@ -77,7 +80,7 @@ public class TransitionTest {
         transition.removeEdgeOut(edge2);
         assertEquals(transition.getEdgesOut().size(), 1);
         transition.removeEdgeOut(edge1);
-        assertEquals(transition.getEdgesOut().size(), 0);        
+        assertEquals(transition.getEdgesOut().size(), 0);
     }
 
     /**

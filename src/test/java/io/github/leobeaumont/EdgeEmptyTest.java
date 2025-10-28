@@ -2,13 +2,18 @@ package io.github.leobeaumont;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Unit tests for the {@link EdgeEmpty} class.
  */
 public class EdgeEmptyTest {
 
+    private static final int PLACE_TOKENS = 666;
     private EdgeEmpty edge;
 
     /**
@@ -62,7 +67,7 @@ public class EdgeEmptyTest {
      */
     @Test
     void activateTest() {
-        Place place = new Place(666);
+        Place place = new Place(PLACE_TOKENS);
         edge = new EdgeEmpty();
         edge.setOrigin(place);
 
