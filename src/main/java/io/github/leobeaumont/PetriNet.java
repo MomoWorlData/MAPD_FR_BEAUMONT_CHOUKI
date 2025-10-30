@@ -72,27 +72,55 @@ public class PetriNet implements IPretriNet {
 
     /**
      * Adds a weighted input edge (from a place to a transition) with the specified weight.
+     * If an equivalent edge already exists, an exception is thrown.
      *
      * @param weight  the edge weight
      * @param origin  the place from which the edge originates
      * @param arrival the transition to which the edge connects
+     * @throws IllegalArgumentException if an edge between the given origin and arrival already exists
      */
     public void addEdge(int weight, Place origin, Transition arrival) {
+        for (Edge e : this.edges) {
+            if (e instanceof WeightedEdgeIn) {
+                WeightedEdgeIn edgeIn = (WeightedEdgeIn) e;  
+                if (edgeIn.getOrigin() == origin && edgeIn.getArrival() == arrival) {
+                    throw new IllegalArgumentException(
+                        "An input edge from this place to this transition already exists with weight " 
+                        + edgeIn.getWeight()
+                    );
+                }
+            }
+        }
         WeightedEdgeIn edge = new WeightedEdgeIn(origin, arrival, weight);
         this.edges.add(edge);
     }
 
     /**
      * Adds a weighted output edge (from a transition to a place) with the specified weight.
+     * If an equivalent edge already exists, an exception is thrown.
      *
      * @param weight  the edge weight
      * @param origin  the transition from which the edge originates
      * @param arrival the place to which the edge connects
+     * @throws IllegalArgumentException if an edge between the given origin and arrival already exists
      */
     public void addEdge(int weight, Transition origin, Place arrival) {
+        for (Edge e : this.edges) {
+            if (e instanceof WeightedEdgeOut) {
+                WeightedEdgeOut edgeOut = (WeightedEdgeOut) e; 
+                if (edgeOut.getOrigin() == origin && edgeOut.getArrival() == arrival) {
+                    throw new IllegalArgumentException(
+                        "An output edge from this transition to this place already exists with weight "
+                         + edgeOut.getWeight()
+                    );
+                }
+            }
+        }
         WeightedEdgeOut edge = new WeightedEdgeOut(origin, arrival, weight);
         this.edges.add(edge);
     }
+
+
 
     /**
      * Adds an unconnected weighted input edge.

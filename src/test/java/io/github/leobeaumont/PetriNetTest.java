@@ -71,6 +71,73 @@ public class PetriNetTest {
     }
 
     /**
+     * Tests that adding a duplicate input edge (from the same place to the same transition)
+     * throws an {@link IllegalArgumentException} and includes the existing edge weight in the message.
+     */
+    @Test
+    void testAddInputEdgeThrowsOnDuplicate() {
+        PetriNet petriNet = new PetriNet();
+        Place place = new Place();
+        Transition transition = new Transition();
+
+        // First edge should be added successfully
+        petriNet.addEdge(2, place, transition);
+
+        // Adding the same edge again should throw an exception
+        IllegalArgumentException ex = assertThrows(
+                IllegalArgumentException.class,
+                () -> petriNet.addEdge(3, place, transition)
+        );
+
+        // The message should mention that an edge already exists and include its weight
+        assertTrue(ex.getMessage().contains("already exists"));
+        assertTrue(ex.getMessage().contains("2"));
+    }
+
+    /**
+     * Tests that adding a duplicate output edge (from the same transition to the same place)
+     * throws an {@link IllegalArgumentException} and includes the existing edge weight in the message.
+     */
+    @Test
+    void testAddOutputEdgeThrowsOnDuplicate() {
+        PetriNet petriNet = new PetriNet();
+        Place place = new Place();
+        Transition transition = new Transition();
+
+        // First edge should be added successfully
+        petriNet.addEdge(1, transition, place);
+
+        // Adding the same edge again should throw an exception
+        IllegalArgumentException ex = assertThrows(
+                IllegalArgumentException.class,
+                () -> petriNet.addEdge(5, transition, place)
+        );
+
+        // The message should mention that an edge already exists and include its weight
+        assertTrue(ex.getMessage().contains("already exists"));
+        assertTrue(ex.getMessage().contains("1"));
+    }
+
+    /**
+     * Tests that adding an input edge (place → transition) and an output edge (transition → place)
+     * between the same nodes is allowed, since they represent different directions.
+     */
+    @Test
+    void testAddInputAndOutputEdgesAreBothAllowed() {
+        PetriNet petriNet = new PetriNet();
+        Place place = new Place();
+        Transition transition = new Transition();
+
+        // Add both directions — should be valid
+        petriNet.addEdge(2, place, transition);   // Input edge
+        petriNet.addEdge(3, transition, place);   // Output edge
+
+        // Verify both edges are present
+        assertEquals(2, petriNet.getEdges().size());
+    }
+
+
+    /**
      * Tests that places, transitions, and edges can be removed from the Petri net.
      * Ensures that lists are empty after removals.
      */
@@ -192,4 +259,7 @@ public class PetriNetTest {
         // Should not throw even if random selection occurs
         assertDoesNotThrow(() -> petriNet.launchSimulation(1));
     }
+
+    
+
 }

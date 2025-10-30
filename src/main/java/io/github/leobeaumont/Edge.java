@@ -22,5 +22,6 @@ public abstract class Edge {
      * typically involving the transfer of tokens between connected nodes.
      * </p>
      */
+   
     public abstract void activate();
 }
