@@ -353,9 +353,18 @@ public class PetriNet2 implements IPretriNet {
      * @param steps the number of steps to simulate
      */
     public void launchSimulation(int steps) {
+        if (!isValid()) {
+            throw new IllegalStateException("PetriNet.launchSimulation(steps) -- The Petri net is not valid.");
+        }
         for (int i = 0; i < steps; ++i) {
             // Get every drawable transition
             List<Transition> drawable = this.drawable();
+
+            // If no transition can be fired, stop the simulation
+            if (drawable.isEmpty()) {
+                System.out.println("No drawable transitions available. Stopping simulation.");
+                return;
+            }
 
             // Select a drawable transition at random
             Random random = new Random();
