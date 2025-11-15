@@ -33,11 +33,11 @@ import io.github.leobeaumont.Nodes.Transition;
  *
  * <p>Supported edge types include {@link WeightedEdgeIn}, {@link WeightedEdgeOut},
  * {@link EdgeEmpty}, and {@link EdgeZero}.</p>
- *
+ * 
  * @author
  *     leobeaumont
  */
-public class PetriNet1 implements IPretriNet {
+public class PetriNet1 implements IPretriNet {  // This version allows users to add duplicate edges and will notify him at the simulation that the Petri net is not valid.
 
     private List<Edge> edges;
     private List<Place> places;
