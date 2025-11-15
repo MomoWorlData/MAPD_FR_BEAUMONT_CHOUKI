@@ -1,6 +1,10 @@
-package io.github.leobeaumont;
+package io.github.leobeaumont.PetriNET;
 
 import java.util.List;
+
+import io.github.leobeaumont.Edges.Edge;
+import io.github.leobeaumont.Nodes.Place;
+import io.github.leobeaumont.Nodes.Transition;
 
 /**
  * Defines the contract for a Petri net simulation.

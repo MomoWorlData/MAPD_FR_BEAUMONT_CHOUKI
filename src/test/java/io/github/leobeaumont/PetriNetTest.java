@@ -3,6 +3,14 @@ package io.github.leobeaumont;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
+import io.github.leobeaumont.Edges.Edge;
+import io.github.leobeaumont.Edges.EdgeEmpty;
+import io.github.leobeaumont.Edges.WeightedEdgeIn;
+import io.github.leobeaumont.Edges.WeightedEdgeOut;
+import io.github.leobeaumont.Nodes.Place;
+import io.github.leobeaumont.Nodes.Transition;
+import io.github.leobeaumont.PetriNET.PetriNet1;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -10,18 +18,18 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Unit tests for the {@link PetriNet} class.
+ * Unit tests for the {@link PetriNet1} class.
  * <p>
  * These tests verify the basic behavior of the PetriNet implementation,
  * including the addition and removal of places, transitions, and edges,
  * as well as correct handling of weights, tokens, and simulation execution.
  * </p>
  *
- * <p>Each test creates a new {@link PetriNet} instance to ensure independence.</p>
+ * <p>Each test creates a new {@link PetriNet1} instance to ensure independence.</p>
  */
 public class PetriNetTest {
 
-    private PetriNet petriNet;
+    private PetriNet1 petriNet;
 
     /**
      * Tests that places can be added and retrieved correctly.
@@ -29,7 +37,7 @@ public class PetriNetTest {
      */
     @Test
     void testAddAndGetPlaces() {
-        petriNet = new PetriNet();
+        petriNet = new PetriNet1();
         petriNet.addPlace(1);
         List<Place> places = petriNet.getPlaces();
 
@@ -43,7 +51,7 @@ public class PetriNetTest {
      */
     @Test
     void testAddAndGetTransitions() {
-        petriNet = new PetriNet();
+        petriNet = new PetriNet1();
         petriNet.addTransition();
         List<Transition> transitions = petriNet.getTransitions();
 
@@ -57,7 +65,7 @@ public class PetriNetTest {
      */
     @Test
     void testAddWeightedEdges() {
-        petriNet = new PetriNet();
+        petriNet = new PetriNet1();
         Place place = new Place(2);
         Transition transition = new Transition();
 
@@ -76,7 +84,7 @@ public class PetriNetTest {
      */
     @Test
     void testAddInputEdgeThrowsOnDuplicate() {
-        PetriNet petriNet = new PetriNet();
+        PetriNet1 petriNet = new PetriNet1();
         Place place = new Place();
         Transition transition = new Transition();
 
@@ -100,7 +108,7 @@ public class PetriNetTest {
      */
     @Test
     void testAddOutputEdgeThrowsOnDuplicate() {
-        PetriNet petriNet = new PetriNet();
+        PetriNet1 petriNet = new PetriNet1();
         Place place = new Place();
         Transition transition = new Transition();
 
@@ -124,7 +132,7 @@ public class PetriNetTest {
      */
     @Test
     void testAddInputAndOutputEdgesAreBothAllowed() {
-        PetriNet petriNet = new PetriNet();
+        PetriNet1 petriNet = new PetriNet1();
         Place place = new Place();
         Transition transition = new Transition();
 
@@ -143,7 +151,7 @@ public class PetriNetTest {
      */
     @Test
     void testRemoveElements() {
-        petriNet = new PetriNet();
+        petriNet = new PetriNet1();
         Place place = new Place(1);
         Transition transition = new Transition();
         WeightedEdgeIn edge = new WeightedEdgeIn(place, transition, 2);
@@ -162,12 +170,12 @@ public class PetriNetTest {
     }
 
     /**
-     * Tests the {@link PetriNet#setTokens(Place, int)} method.
+     * Tests the {@link PetriNet1#setTokens(Place, int)} method.
      * Verifies that the token count of a place is updated correctly.
      */
     @Test
     void testSetTokens() {
-        petriNet = new PetriNet();
+        petriNet = new PetriNet1();
         Place place = new Place();
         petriNet.setTokens(place, 1);
 
@@ -175,12 +183,12 @@ public class PetriNetTest {
     }
 
     /**
-     * Tests that the {@link PetriNet#setWeight(WeightedEdgeIn, int)} and
-     * {@link PetriNet#setWeight(WeightedEdgeOut, int)} methods correctly update edge weights.
+     * Tests that the {@link PetriNet1#setWeight(WeightedEdgeIn, int)} and
+     * {@link PetriNet1#setWeight(WeightedEdgeOut, int)} methods correctly update edge weights.
      */
     @Test
     void testSetWeightOnWeightedEdges() {
-        petriNet = new PetriNet();
+        petriNet = new PetriNet1();
         WeightedEdgeIn edgeIn = new WeightedEdgeIn(0);
         WeightedEdgeOut edgeOut = new WeightedEdgeOut(0);
 
@@ -196,7 +204,7 @@ public class PetriNetTest {
      */
     @Test
     void testSetWeightThrowsOnInvalidEdge() {
-        petriNet = new PetriNet();
+        petriNet = new PetriNet1();
         EdgeEmpty invalidEdge = new EdgeEmpty();
 
         Exception ex = assertThrows(IllegalArgumentException.class, () ->
@@ -206,12 +214,12 @@ public class PetriNetTest {
     }
 
     /**
-     * Tests that the {@link PetriNet#drawable()} method returns a non-null list.
+     * Tests that the {@link PetriNet1#drawable()} method returns a non-null list.
      * Ensures transitions can be retrieved even when none are drawable.
      */
     @Test
     void testDrawableTransitions() {
-        petriNet = new PetriNet();
+        petriNet = new PetriNet1();
         Transition transition = new Transition();
         petriNet.getTransitions().add(transition);
 
@@ -225,7 +233,7 @@ public class PetriNetTest {
      */
     @Test
     void testGettersAndSetters() {
-        petriNet = new PetriNet();
+        petriNet = new PetriNet1();
         List<Edge> edges = List.of(new WeightedEdgeIn(2));
         List<Place> places = List.of(new Place(1));
         List<Transition> transitions = List.of(new Transition());
@@ -240,12 +248,12 @@ public class PetriNetTest {
     }
 
     /**
-     * Tests that the {@link PetriNet#launchSimulation(int)} method
+     * Tests that the {@link PetriNet1#launchSimulation(int)} method
      * can run without throwing exceptions when valid transitions exist.
      */
     @Test
     void testLaunchSimulationDoesNotCrash() {
-        petriNet = new PetriNet();
+        petriNet = new PetriNet1();
         Place place = new Place(2);
         Transition transition = new Transition();
         WeightedEdgeIn edgeIn = new WeightedEdgeIn(place, transition, 1);

@@ -1,4 +1,4 @@
-package io.github.leobeaumont;
+package io.github.leobeaumont.Nodes;
 
 /**
  * Represents a place in a Petri net, used to store and manage tokens.

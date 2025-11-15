@@ -2,6 +2,10 @@ package io.github.leobeaumont;
 
 import org.junit.jupiter.api.Test;
 
+import io.github.leobeaumont.Edges.WeightedEdgeIn;
+import io.github.leobeaumont.Nodes.Place;
+import io.github.leobeaumont.Nodes.Transition;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;

@@ -2,6 +2,8 @@ package io.github.leobeaumont;
 
 import org.junit.jupiter.api.Test;
 
+import io.github.leobeaumont.Nodes.Place;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

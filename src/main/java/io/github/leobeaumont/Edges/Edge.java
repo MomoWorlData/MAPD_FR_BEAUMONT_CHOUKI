@@ -1,4 +1,4 @@
-package io.github.leobeaumont;
+package io.github.leobeaumont.Edges;
 
 /**
  * Represents a directed connection between a {@code Place} and a {@code Transition}.

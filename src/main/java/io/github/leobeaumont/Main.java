@@ -1,5 +1,9 @@
 package io.github.leobeaumont;
 
+import io.github.leobeaumont.Nodes.Place;
+import io.github.leobeaumont.Nodes.Transition;
+import io.github.leobeaumont.PetriNET.PetriNet1;
+
 /**
  * Entry point for simulating a simple Petri net.
  * <p>
@@ -10,7 +14,7 @@ package io.github.leobeaumont;
  * <p>
  * This example performs the following steps:
  * <ol>
- *   <li>Creates a new {@link PetriNet} instance.</li>
+ *   <li>Creates a new {@link PetriNet1} instance.</li>
  *   <li>Adds {@link Place} objects with initial tokens.</li>
  *   <li>Adds {@link Transition} objects.</li>
  *   <li>Connects places and transitions using edges.</li>
@@ -45,7 +49,7 @@ public final class Main {
         final int simulationSteps = 3;
 
         // Create a new PetriNet
-        PetriNet net = new PetriNet();
+        PetriNet1 net = new PetriNet1();
 
         // Add places with initial tokens
         Place p1 = new Place(2);  // Place with 2 tokens

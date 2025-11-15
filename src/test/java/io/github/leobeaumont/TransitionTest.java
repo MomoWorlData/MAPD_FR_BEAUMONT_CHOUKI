@@ -2,6 +2,15 @@ package io.github.leobeaumont;
 
 import org.junit.jupiter.api.Test;
 
+import io.github.leobeaumont.Edges.EdgeEmpty;
+import io.github.leobeaumont.Edges.EdgeIn;
+import io.github.leobeaumont.Edges.EdgeOut;
+import io.github.leobeaumont.Edges.EdgeZero;
+import io.github.leobeaumont.Edges.WeightedEdgeIn;
+import io.github.leobeaumont.Edges.WeightedEdgeOut;
+import io.github.leobeaumont.Nodes.Place;
+import io.github.leobeaumont.Nodes.Transition;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

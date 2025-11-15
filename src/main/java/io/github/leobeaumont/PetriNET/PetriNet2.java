@@ -1,9 +1,19 @@
-package io.github.leobeaumont;
+package io.github.leobeaumont.PetriNET;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
+import io.github.leobeaumont.Edges.Edge;
+import io.github.leobeaumont.Edges.EdgeEmpty;
+import io.github.leobeaumont.Edges.EdgeIn;
+import io.github.leobeaumont.Edges.EdgeOut;
+import io.github.leobeaumont.Edges.EdgeZero;
+import io.github.leobeaumont.Edges.WeightedEdgeIn;
+import io.github.leobeaumont.Edges.WeightedEdgeOut;
+import io.github.leobeaumont.Nodes.Place;
+import io.github.leobeaumont.Nodes.Transition;
 
 /**
  * Represents a Petri net system composed of places, transitions, and edges.
@@ -21,10 +31,9 @@ import java.util.Random;
  * <p>Supported edge types include {@link WeightedEdgeIn}, {@link WeightedEdgeOut},
  * {@link EdgeEmpty}, and {@link EdgeZero}.</p>
  *
- * @author
- *     leobeaumont
  */
-public class PetriNet implements IPretriNet {
+
+public class PetriNet2 implements IPretriNet {
 
     private List<Edge> edges;
     private List<Place> places;
@@ -35,7 +44,7 @@ public class PetriNet implements IPretriNet {
      * <p>Uses {@link ArrayList} for internal collections since it provides
      * efficient iteration and insertion at the end, which suits typical Petri net usage.</p>
      */
-    public PetriNet() {
+    public PetriNet2() {
         /* ArrayList is faster/memory effficient in this case because:
         - We won't remove elements often from the middle of the list.
         - Most of the time we iterate through the list.
@@ -69,58 +78,52 @@ public class PetriNet implements IPretriNet {
         Place place = new Place(nbTokens);
         this.places.add(place);
     }
+    
+    /**
+     * Adds a new transition to the Petri net.
+     */
+    public void addTransition() {
+        Transition transition = new Transition();
+        this.transitions.add(transition);
+    }
 
     /**
      * Adds a weighted input edge (from a place to a transition) with the specified weight.
-     * If an equivalent edge already exists, an exception is thrown.
      *
      * @param weight  the edge weight
      * @param origin  the place from which the edge originates
      * @param arrival the transition to which the edge connects
-     * @throws IllegalArgumentException if an edge between the given origin and arrival already exists
      */
     public void addEdge(int weight, Place origin, Transition arrival) {
-        for (Edge e : this.edges) {
-            if (e instanceof WeightedEdgeIn) {
-                WeightedEdgeIn edgeIn = (WeightedEdgeIn) e;  
-                if (edgeIn.getOrigin() == origin && edgeIn.getArrival() == arrival) {
-                    throw new IllegalArgumentException(
-                        "An input edge from this place to this transition already exists with weight " 
-                        + edgeIn.getWeight()
-                    );
-                }
-            }
+        
+        if (this.edgeInExists(origin, arrival)) {
+            throw new IllegalArgumentException(
+                "An input edge from this place to this transition already exists."
+            );
         }
         WeightedEdgeIn edge = new WeightedEdgeIn(origin, arrival, weight);
         this.edges.add(edge);
+       
     }
 
     /**
      * Adds a weighted output edge (from a transition to a place) with the specified weight.
-     * If an equivalent edge already exists, an exception is thrown.
      *
      * @param weight  the edge weight
      * @param origin  the transition from which the edge originates
      * @param arrival the place to which the edge connects
-     * @throws IllegalArgumentException if an edge between the given origin and arrival already exists
      */
     public void addEdge(int weight, Transition origin, Place arrival) {
-        for (Edge e : this.edges) {
-            if (e instanceof WeightedEdgeOut) {
-                WeightedEdgeOut edgeOut = (WeightedEdgeOut) e; 
-                if (edgeOut.getOrigin() == origin && edgeOut.getArrival() == arrival) {
-                    throw new IllegalArgumentException(
-                        "An output edge from this transition to this place already exists with weight "
-                         + edgeOut.getWeight()
-                    );
-                }
-            }
+
+        if (this.edgeOutExists(origin, arrival)) {
+            throw new IllegalArgumentException(
+                "An output edge from this transition to this place already exists."
+            );
         }
+
         WeightedEdgeOut edge = new WeightedEdgeOut(origin, arrival, weight);
         this.edges.add(edge);
     }
-
-
 
     /**
      * Adds an unconnected weighted input edge.
@@ -149,6 +152,13 @@ public class PetriNet implements IPretriNet {
      * @param arrival the destination transition
      */
     public void addEdgeEmpty(Place origin, Transition arrival) {
+        
+        if (this.edgeInExists(origin, arrival)) {
+            throw new IllegalArgumentException(
+                "An input edge from this place to this transition already exists."
+            );
+        }
+        
         EdgeEmpty edge = new EdgeEmpty(origin, arrival);
         this.edges.add(edge);
     }
@@ -168,6 +178,13 @@ public class PetriNet implements IPretriNet {
      * @param arrival the destination transition
      */
     public void addEdgeZero(Place origin, Transition arrival) {
+        
+        if (this.edgeInExists(origin, arrival)) {
+            throw new IllegalArgumentException(
+                "An input edge from this place to this transition already exists."
+            );
+        }
+        
         EdgeZero edge = new EdgeZero(origin, arrival);
         this.edges.add(edge);
     }
@@ -180,15 +197,7 @@ public class PetriNet implements IPretriNet {
         this.edges.add(edge);
     }
 
-    /**
-     * Adds a new transition to the Petri net.
-     */
-    public void addTransition() {
-        Transition transition = new Transition();
-        this.transitions.add(transition);
-    }
-
-    /**
+        /**
      * Removes the specified place from the Petri net.
      *
      * @param place the place to remove
@@ -357,6 +366,40 @@ public class PetriNet implements IPretriNet {
         }
     }
 
+    /**Verify if an input Edge from a place to a transition exists
+     * @param origin the origin place
+     * @param arrival the destination transition
+     * @return true if an edge exists, false otherwise
+     */
+    private boolean edgeInExists(Place origin, Transition arrival) {
+        for (Edge e : this.edges) {
+            if (e instanceof EdgeIn) {
+                EdgeIn edgeIn = (EdgeIn) e;  
+                if (edgeIn.getOrigin() == origin && edgeIn.getArrival() == arrival) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**Verify if an output Edge from a transition to a place exists
+     * @param origin the origin transition
+     * @param arrival the destination place
+     * @return true if an edge exists, false otherwise
+     */
+    private boolean edgeOutExists(Transition origin, Place arrival) {
+        for (Edge e : this.edges) {
+            if (e instanceof EdgeOut) {
+                EdgeOut edgeOut = (EdgeOut) e;  
+                if (edgeOut.getOrigin() == origin && edgeOut.getArrival() == arrival) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     /**
      * Returns the list of edges in the Petri net.
      *
@@ -409,5 +452,6 @@ public class PetriNet implements IPretriNet {
      */
     public void setTransitions(List<Transition> transitions) {
         this.transitions = transitions;
-    }
+    }    
+
 }
