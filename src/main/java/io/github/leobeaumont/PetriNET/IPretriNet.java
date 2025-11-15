@@ -48,6 +48,23 @@ public interface IPretriNet {
     void addEdge(int weight, Transition origin, Place arrival);
 
     /**
+     * Adds an empty (inhibitor) edge from a place to a transition.
+     *
+     * @param origin  the origin place
+     * @param arrival the destination transition
+     */
+    void addEdgeEmpty(Place origin, Transition arrival); 
+    
+
+     /**
+     * Adds a zero-type (test) edge from a place to a transition.
+     *
+     * @param origin  the origin place
+     * @param arrival the destination transition
+     */
+    void addEdgeZero(Place origin, Transition arrival);
+
+    /**
      * Adds a new {@link Transition} to the Petri net.
      */
     void addTransition();
