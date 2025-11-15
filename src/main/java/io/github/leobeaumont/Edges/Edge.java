@@ -9,7 +9,7 @@ package io.github.leobeaumont.Edges;
  *
  * <p>
  * Since an {@code Edge} alone cannot participate directly in a simulation,
- * subclasses such as {@code PlaceToTransitionEdge} or {@code TransitionToPlaceEdge}
+ * subclasses such as {@code WeightedEdgeIn} or {@code WeightedEdgeOut}
  * must provide specific implementations.
  * </p>
  */

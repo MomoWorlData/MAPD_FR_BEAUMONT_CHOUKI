@@ -7,7 +7,7 @@ package io.github.leobeaumont.Nodes;
  * methods to add or remove tokens safely.
  * </p>
  */
-public class Place {
+public class Place extends Node {
 
     private int nbTokens;
 
